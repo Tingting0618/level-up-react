@@ -18,7 +18,7 @@ export const GameForm = () => {
         numberOfPlayers: 0,
         title: "",
         maker: "",
-        gameTypeId: 0,
+        gameTypeId: 1,
     });
 
     /*
