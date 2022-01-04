@@ -18,7 +18,7 @@ export const GameForm = () => {
         numberOfPlayers: 0,
         title: "",
         maker: "",
-        gameTypeId: 0,
+        gameTypeId: 1,
     });
 
     /*
@@ -83,6 +83,21 @@ export const GameForm = () => {
                         value={currentGame.title}
                         onChange={changeGameTitleState}
                     />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="type">GameType: </label>
+                    <select
+                        name="type"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentGame.gameTypeId}
+                        onChange={changeGameTypeState}
+                    >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
                 </div>
             </fieldset>
 
