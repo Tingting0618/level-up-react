@@ -84,6 +84,21 @@ export const GameForm = () => {
                         onChange={changeGameTitleState}
                     />
                 </div>
+                <div className="form-group">
+                    <label htmlFor="type">GameType: </label>
+                    <select
+                        name="type"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentGame.gameTypeId}
+                        onChange={changeGameTypeState}
+                    >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
             </fieldset>
 
             {/* You create the rest of the input fields for each game property */}
