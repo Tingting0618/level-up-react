@@ -5,9 +5,6 @@ import { useHistory } from "react-router-dom";
 export const GameForm = () => {
     const history = useHistory();
     const { createGame, getGameTypes, gameTypes } = useContext(GameContext);
-    useEffect(() => {
-        getGameTypes();
-    }, []);
     /*
           Since the input fields are bound to the values of
           the properties of this state variable, you need to
@@ -25,7 +22,9 @@ export const GameForm = () => {
           Get game types on initialization so that the <select>
           element presents game type choices to the user.
       */
-
+    useEffect(() => {
+        getGameTypes();
+    }, []);
 
     /*
           REFACTOR CHALLENGE START
@@ -84,8 +83,53 @@ export const GameForm = () => {
                         onChange={changeGameTitleState}
                     />
                 </div>
+
                 <div className="form-group">
-                    <label htmlFor="type">GameType: </label>
+                    <label htmlFor="maker">Maker: </label>
+                    <input
+                        type="text"
+                        name="maker"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentGame.maker}
+                        onChange={changeGameMakerState}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="level">Skill Level: </label>
+                    <select
+                        name="level"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentGame.skillLevel}
+                        onChange={changeGameSkillLevelState}
+                    >
+                        <option value="0">Select a skill level...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="player">Enter number of players needed: </label>
+                    <input
+                        type="number"
+                        name="player"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentGame.numberOfPlayers}
+                        onChange={changeGamePlayersState}
+                    />
+                </div>
+
+
+                <div className="form-group">
+                    <label htmlFor="type">Game Type: </label>
                     <select
                         name="type"
                         required
@@ -94,11 +138,13 @@ export const GameForm = () => {
                         value={currentGame.gameTypeId}
                         onChange={changeGameTypeState}
                     >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                        <option value="0">Select a game type...</option>
+                        {gameTypes.map((gameType) => (
+                            <option value={gameType.id}>{gameType.label}</option>
+                        ))}
                     </select>
                 </div>
+
             </fieldset>
 
             {/* You create the rest of the input fields for each game property */}
@@ -110,8 +156,8 @@ export const GameForm = () => {
                     evt.preventDefault();
 
                     const game = {
-                        maker: currentGame.maker,
                         title: currentGame.title,
+                        maker: currentGame.maker,
                         numberOfPlayers: parseInt(currentGame.numberOfPlayers),
                         skillLevel: parseInt(currentGame.skillLevel),
                         gameTypeId: parseInt(currentGame.gameTypeId),
@@ -124,6 +170,6 @@ export const GameForm = () => {
             >
                 Create
             </button>
-        </form>
+        </form >
     );
 };

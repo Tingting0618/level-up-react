@@ -1,92 +1,128 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { GameContext } from "./GameProvider.js";
+import { EventContext } from "./EventProvider.js";
 
 export const EventForm = () => {
-  const history = useHistory();
-//   const {games, getGames} = useContext(GameContext);
- const games = [{
-    "id": 1,
-    "title": "Welcome To",
-    "maker": "Benoit Turpin",
-    "number_of_players": 4,
-    "skill_level": 3,
-    "game_type": {
-        "id": 1,
-        "label": "Board game"
-    },
-    "gamer": {
-        "id": 1,
-        "bio": "Me",
-        "user": 1
-    }
-},
-{
-    "id": 2,
-    "title": "Settlers of Catan",
-    "maker": "Klaus Teuber",
-    "number_of_players": 4,
-    "skill_level": 4,
-    "game_type": {
-        "id": 1,
-        "label": "Board game"
-    },
-    "gamer": {
-        "id": 1,
-        "bio": "Me",
-        "user": 1
-    }
-}]
 
-//   useEffect(() => {
-//       getGames();
-//       console.log(games)
-//   }, []);
-  
+    const history = useHistory();
+    const { games, getGames } = useContext(GameContext);
+    const {createEvent}= useContext(EventContext);
+    useEffect(() => {
+        getGames();
+    }, []);
 
-  const [currentEvent, setEvent] = useState({});
+    const [currentEvent, setCurrentEvent] = useState({
+        gameId: 1,
+        eventDesc: "",
+        eventDate:" ",
+        eventTime:" ",
+    });
 
 
-  const changeEventTitleState = (domEvent) => {
-    const newEventState = { ...currentEvent };
-    newEventState.eventTitle = domEvent.target.value;
-    setEvent(newEventState);  };
 
-  return (
-    <form className="gameForm">
-      <h2 className="gameForm__title">Schedule New Event</h2>
-      <fieldset>
-        <div className="form-group">
-          <label htmlFor="gameId">Game: </label>
-          <select
-            name="gameId"
-            className="form-control"
-            value={currentEvent.gameId}
-            onChange={changeEventTitleState}
-          >
-            <option value="0">Select a game...</option>
-            {games.map((game) => (
-              <option value={game.id}>{game.title}</option>
-            ))}
-          </select>
-        </div>
-      </fieldset>
+    const changeEventTitleState = (domEvent) => {
+        const newEventState = { ...currentEvent };
+        newEventState.gameId = domEvent.target.value;
+        setCurrentEvent(newEventState);
+    };
+    const changeEventDescState = (domEvent) => {
+        const newEventState = { ...currentEvent };
+        newEventState.eventDesc = domEvent.target.value;
+        setCurrentEvent(newEventState);
+    };
 
-      {/* Create the rest of the input fields */}
+    const changeEventDateState = (domEvent) => {
+        const newEventState = { ...currentEvent };
+        newEventState.eventDate = domEvent.target.value;
+        setCurrentEvent(newEventState);
+    };
 
-      <button
-        type="submit"
-        onClick={(evt) => {
-          evt.preventDefault();
+    const changeEventTimeState = (domEvent) => {
+        const newEventState = { ...currentEvent };
+        newEventState.eventTime = domEvent.target.value;
+        setCurrentEvent(newEventState);
+    };
+    return (
+        <form className="gameForm">
+            <h2 className="gameForm__title">Schedule New Event</h2>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="gameId">Game: </label>
+                    <select
+                        name="gameId"
+                        className="form-control"
+                        value={currentEvent.gameId}
+                        onChange={changeEventTitleState}
+                    >
+                        <option value="0">Select a game...</option>
+                        {games.map((game) => (
+                            <option value={game.id}>{game.title}</option>
+                        ))}
+                    </select>
+                </div>
 
-          // Create the event
+                <div className="form-group">
+                    <label htmlFor="desc">Description: </label>
+                    <input
+                        type="text"
+                        name="desc"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentEvent.eventDesc}
+                        onChange={changeEventDescState}
+                    />
+                </div>
 
-          // Once event is created, redirect user to event list
-        }}
-        className="btn btn-primary"
-      >
-        Create Event
-      </button>
-    </form>
-  );
+                <div className="form-group">
+                    <label htmlFor="date">Date: </label>
+                    <input
+                        type="date"
+                        name="date"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentEvent.eventDate}
+                        onChange={changeEventDateState}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="time">Time: </label>
+                    <input
+                        type="time"
+                        name="time"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentEvent.eventTime}
+                        onChange={changeEventTimeState}
+                    />
+                </div>
+            </fieldset>
+
+            {/* Create the rest of the input fields */}
+
+            <button
+                type="submit"
+                onClick={(evt) => {
+                    evt.preventDefault();
+
+                    const event = {
+                        gameId: parseInt(currentEvent.gameId),
+                        eventDesc: currentEvent.eventDesc,
+                        eventDate: currentEvent.eventDate,
+                        eventTime: currentEvent.eventTime,
+                    };
+                
+                    // Send POST request to your API
+                    createEvent(event).then(() => history.push("/events"));
+                }}
+                className="btn btn-primary"
+            >
+                Create Event
+            </button>
+        </form>
+    );
 };
