@@ -12,6 +12,20 @@ export const GameList = (props) => {
 
     return (
         <article className="games">
+            <header className="games__header">
+                <h1>Level Up Games</h1>
+            </header>
+            <div className="button--group">
+                <span class="fa fa-star checked"></span>
+                <button
+                    className="btn btn-2 btn-sep icon-create"
+                    onClick={() => {
+                        history.push({ pathname: "/games/new" });
+                    }}
+                >
+                    Register New Game
+                </button>
+            </div>
             {games.map((game) => {
                 return (
                     <section key={`game--${game.id}`} className="game">
@@ -27,14 +41,6 @@ export const GameList = (props) => {
                     </section>
                 );
             })}
-            <button
-                className="btn btn-2 btn-sep icon-create"
-                onClick={() => {
-                    history.push({ pathname: "/games/new" });
-                }}
-            >
-                Register New Game
-            </button>
         </article>
     );
 };
