@@ -127,6 +127,8 @@ code {
 	background: #6ec893;
 	color: #fff;
 	font-family: monospace;
+	padding: 1rem;
+	border-radius: 5px;
 }
 
 .btn-2:hover {
