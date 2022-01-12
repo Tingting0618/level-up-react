@@ -19,7 +19,7 @@ export const NavBar = () => {
                 </li>
 
                 <li className="navbar__item">
-                    <Link className="nav-link" to="/profiles">Profiles</Link>
+                    <Link className="nav-link" to="/profile">Profile</Link>
                 </li>
                 {
                     (localStorage.getItem("lu_token") !== null) ?
