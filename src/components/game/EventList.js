@@ -3,8 +3,9 @@ import { EventContext } from "./EventProvider.js";
 import { useHistory } from "react-router-dom";
 
 export const EventList = (props) => {
-  const { events, getEvents } = useContext(EventContext);
+  const { events, getEvents ,joinEvent } = useContext(EventContext);
   const history = useHistory();
+  // const profile = []
 
   useEffect(() => {
     getEvents();
@@ -23,7 +24,9 @@ export const EventList = (props) => {
       >
         Create New Event
       </button>
+
       {events.map((event) => {
+        // const attending = profile.events.some((evt) => evt.id === event.id);
         return (
           <section key={event.id} className="registration">
             <div className="registration__game">{event.game.title}</div>
@@ -37,11 +40,12 @@ export const EventList = (props) => {
               })}
               @ {event.time}
             </div>
+            <button className="btn btn-2" onClick={() => joinEvent(event.id)}>
+              Join
+            </button>
           </section>
         );
       })}
-
-
 
     </article>
   );

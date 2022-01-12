@@ -3,10 +3,12 @@ import { Route } from "react-router-dom";
 import { GameList } from "./game/GameList.js";
 import { GameProvider } from "./game/GameProvider.js";
 import { EventProvider } from "./game/EventProvider.js";
+import { ProfileProvider } from "./auth/ProfileProvider.js";
+import { Profile } from "./auth/Profile.js";
 import { EventList } from "./game/EventList.js";
 import { GameForm } from "./game/GameForm.js";
 import { EventForm } from "./game/EventForm.js";
-import './LevelUp.css'; 
+import './LevelUp.css';
 
 export const ApplicationViews = () => {
     return (
@@ -42,6 +44,12 @@ export const ApplicationViews = () => {
                         </Route>
                     </GameProvider>
                 </EventProvider>
+
+                <ProfileProvider>
+                    <Route exact path="/profile">
+                        <Profile />
+                    </Route>
+                </ProfileProvider>
             </main>
         </>
     );

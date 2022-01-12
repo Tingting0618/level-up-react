@@ -14,9 +14,9 @@ export const EventForm = () => {
 
     const [currentEvent, setCurrentEvent] = useState({
         gameId: 1,
-        eventDesc: "",
-        eventDate:" ",
-        eventTime:" ",
+        description: "",
+        date:" ",
+        time:" ",
     });
 
 
@@ -28,19 +28,19 @@ export const EventForm = () => {
     };
     const changeEventDescState = (domEvent) => {
         const newEventState = { ...currentEvent };
-        newEventState.eventDesc = domEvent.target.value;
+        newEventState.description = domEvent.target.value;
         setCurrentEvent(newEventState);
     };
 
     const changeEventDateState = (domEvent) => {
         const newEventState = { ...currentEvent };
-        newEventState.eventDate = domEvent.target.value;
+        newEventState.date = domEvent.target.value;
         setCurrentEvent(newEventState);
     };
 
     const changeEventTimeState = (domEvent) => {
         const newEventState = { ...currentEvent };
-        newEventState.eventTime = domEvent.target.value;
+        newEventState.time = domEvent.target.value;
         setCurrentEvent(newEventState);
     };
     return (
@@ -70,7 +70,7 @@ export const EventForm = () => {
                         required
                         autoFocus
                         className="form-control"
-                        value={currentEvent.eventDesc}
+                        value={currentEvent.description}
                         onChange={changeEventDescState}
                     />
                 </div>
@@ -83,7 +83,7 @@ export const EventForm = () => {
                         required
                         autoFocus
                         className="form-control"
-                        value={currentEvent.eventDate}
+                        value={currentEvent.date}
                         onChange={changeEventDateState}
                     />
                 </div>
@@ -96,7 +96,7 @@ export const EventForm = () => {
                         required
                         autoFocus
                         className="form-control"
-                        value={currentEvent.eventTime}
+                        value={currentEvent.time}
                         onChange={changeEventTimeState}
                     />
                 </div>
@@ -111,9 +111,9 @@ export const EventForm = () => {
 
                     const event = {
                         gameId: parseInt(currentEvent.gameId),
-                        eventDesc: currentEvent.eventDesc,
-                        eventDate: currentEvent.eventDate,
-                        eventTime: currentEvent.eventTime,
+                        description: currentEvent.description,
+                        date: currentEvent.date,
+                        time: currentEvent.time,
                     };
                 
                     // Send POST request to your API
