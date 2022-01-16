@@ -124,8 +124,8 @@ code {
 
 /* Button 2 */
 .btn-2 {
-	background: #6ec893;
-	color: #fff;
+	background:  rgb(41, 129, 19);
+	color: rgb(253, 253, 253);
 	font-family: monospace;
 	padding: 1rem;
 	border-radius: 5px;
