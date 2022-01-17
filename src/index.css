@@ -152,8 +152,11 @@ code {
 
 /* Button 3 */
 .btn-3 {
+	padding: 1rem;
 	background: #e74c3c;
 	color: #fff;
+	font-family: monospace;
+	border-radius: 5px;
 }
 
 .btn-3:hover {

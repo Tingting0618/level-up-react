@@ -23,6 +23,7 @@ export const EventList = () => {
             Schedule New Event
           </button>
         </header>
+        
         {events.map((event) => {
           return (
             <section key={event.id} className="registration">
