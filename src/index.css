@@ -111,7 +111,7 @@ code {
 	width: 60px;
 }
 .btn-primary {
-	background: #6ec893;
+	background:rgb(41, 129, 19);
 	color: #fff;
 	font-family: monospace;
 	padding: 1.5rem;
@@ -152,8 +152,11 @@ code {
 
 /* Button 3 */
 .btn-3 {
+	padding: 1rem;
 	background: #e74c3c;
 	color: #fff;
+	font-family: monospace;
+	border-radius: 5px;
 }
 
 .btn-3:hover {

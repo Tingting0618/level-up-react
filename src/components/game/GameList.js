@@ -29,6 +29,7 @@ export const GameList = (props) => {
             {games.map((game) => {
                 return (
                     <section key={`game--${game.id}`} className="game">
+
                         <div className="game__title">
                             {game.title} by {game.maker}
                         </div>
@@ -37,6 +38,13 @@ export const GameList = (props) => {
                         </div>
                         <div className="game__skillLevel">
                             Skill level is {game.skill_level}
+                        </div>
+                        <div className="game__edit">
+                            <button className='btn btn-2'
+                                onClick={() => {
+                                    history.push(`/games/${game.id}/edit`)
+                                }}
+                            >Edit</button>
                         </div>
                     </section>
                 );

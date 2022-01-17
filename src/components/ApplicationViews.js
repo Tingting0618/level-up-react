@@ -50,6 +50,13 @@ export const ApplicationViews = () => {
                         <Profile />
                     </Route>
                 </ProfileProvider>
+
+                <GameProvider>
+                    <Route exact path="/games/:gameId(\d+)/edit">
+                        <GameForm />
+                    </Route>
+                </GameProvider>
+
             </main>
         </>
     );

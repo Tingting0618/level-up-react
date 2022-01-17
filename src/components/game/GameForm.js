@@ -1,10 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { GameContext } from "./GameProvider.js";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export const GameForm = () => {
+    const { gameId } = useParams();
     const history = useHistory();
-    const { createGame, getGameTypes, gameTypes } = useContext(GameContext);
+    const { createGame, getGameTypes, gameTypes, getGameById } = useContext(GameContext);
     /*
           Since the input fields are bound to the values of
           the properties of this state variable, you need to
@@ -23,9 +24,22 @@ export const GameForm = () => {
           element presents game type choices to the user.
       */
     useEffect(() => {
-        getGameTypes();
-    }, []);
-
+        getGameTypes().then(() => {
+            if (gameId) {
+                getGameById(gameId)
+                    .then(game => {
+                        setCurrentGame({
+                            skillLevel: game.skill_level,
+                            numberOfPlayers: game.number_of_players,
+                            title: game.title,
+                            maker: game.maker,
+                            gameTypeId: game.game_type.id
+                        })
+                    })
+            } else {
+            }
+        })
+    }, [])
     /*
           REFACTOR CHALLENGE START
   
@@ -135,6 +149,7 @@ export const GameForm = () => {
                         required
                         autoFocus
                         className="form-control"
+                        // value={currentGame.gameTypeId}
                         value={currentGame.gameTypeId}
                         onChange={changeGameTypeState}
                     >
@@ -146,8 +161,6 @@ export const GameForm = () => {
                 </div>
 
             </fieldset>
-
-            {/* You create the rest of the input fields for each game property */}
 
             <button
                 type="submit"
@@ -168,7 +181,7 @@ export const GameForm = () => {
                 }}
                 className="btn btn-primary"
             >
-                Create
+                {gameId ? <>Save Game</> : <>Create Game</>}
             </button>
         </form >
     );
