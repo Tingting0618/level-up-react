@@ -53,18 +53,18 @@
 .game__title {
   font-weight:bolder;
 }
-.checked {
+/* .checked {
   color: rgb(255, 251, 0);
   background-color: #3f8f60;
   padding: 14px;
-}
-.button--group {
+} */
+/* .button--group {
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
   background-color: rgb(41, 129, 19);
-}
+} */
 .gameFrom{
   display: flex;
   justify-content: flex-start;
