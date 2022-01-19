@@ -14,6 +14,7 @@ export const EventList = () => {
       <article className="events">
         <header className="events__header">
           <h1>Level Up Game Events</h1>
+          <span class="fa fa-star checked"></span>
           <button
             className="btn btn-2 btn-sep icon-create"
             onClick={() => {
@@ -23,7 +24,7 @@ export const EventList = () => {
             Schedule New Event
           </button>
         </header>
-        
+
         {events.map((event) => {
           return (
             <section key={event.id} className="registration">

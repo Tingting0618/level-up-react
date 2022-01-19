@@ -1,12 +1,11 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    display: center;
 }
 
 .navbar__item {
     list-style-type: none;
-    padding: 1.5rem;
+    padding: 1.2rem;
 }
 
 .nav img {
@@ -16,7 +15,7 @@
   }
 
 .nav {
-    margin: 2rem;
+    margin: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: left;

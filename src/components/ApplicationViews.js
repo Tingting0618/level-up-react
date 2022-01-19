@@ -19,6 +19,12 @@ export const ApplicationViews = () => {
                     lineHeight: "1.75rem",
                 }}
             >
+                <ProfileProvider>
+                    <Route exact path="/">
+                        <Profile />
+                    </Route>
+                </ProfileProvider>
+                
                 <GameProvider>
                     <Route exact path="/games">
                         <GameList />
