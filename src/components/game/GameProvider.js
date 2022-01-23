@@ -50,9 +50,8 @@ export const GameProvider = (props) => {
         Authorization: `Token ${localStorage.getItem("lu_token")}`,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(animal)
-    })
-      .then(getGames)
+      body: JSON.stringify(game)
+    }).then((response) => response.json()).then(setGames);
   }
   return (
     <GameContext.Provider value={{ games, gameTypes, getGames,getGameById, getGameTypes, createGame,updateGame }}>
