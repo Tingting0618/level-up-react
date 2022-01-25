@@ -5,7 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 export const GameForm = () => {
     const { gameId } = useParams();
     const history = useHistory();
-    const { createGame, getGameTypes, gameTypes, getGameById } = useContext(GameContext);
+    const { createGame, updateGame,getGameTypes, gameTypes, getGameById } = useContext(GameContext);
     /*
           Since the input fields are bound to the values of
           the properties of this state variable, you need to
@@ -29,6 +29,7 @@ export const GameForm = () => {
                 getGameById(gameId)
                     .then(game => {
                         setCurrentGame({
+                            id : gameId,
                             skillLevel: game.skill_level,
                             numberOfPlayers: game.number_of_players,
                             title: game.title,
@@ -174,10 +175,11 @@ export const GameForm = () => {
                         numberOfPlayers: parseInt(currentGame.numberOfPlayers),
                         skillLevel: parseInt(currentGame.skillLevel),
                         gameTypeId: parseInt(currentGame.gameTypeId),
+                        id:parseInt(currentGame.id)
                     };
-
+                    {gameId ? updateGame(game).then(() => history.push("/games")) : createGame(game).then(() => history.push("/games"))}
                     // Send POST request to your API
-                    createGame(game).then(() => history.push("/games"));
+                    // createGame(game).then(() => history.push("/games"));
                 }}
                 className="btn btn-primary"
             >
