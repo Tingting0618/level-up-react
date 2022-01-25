@@ -175,7 +175,7 @@ export const GameForm = () => {
                         numberOfPlayers: parseInt(currentGame.numberOfPlayers),
                         skillLevel: parseInt(currentGame.skillLevel),
                         gameTypeId: parseInt(currentGame.gameTypeId),
-                        id:currentGame.id
+                        id:parseInt(currentGame.id)
                     };
                     {gameId ? updateGame(game).then(() => history.push("/games")) : createGame(game).then(() => history.push("/games"))}
                     // Send POST request to your API
